@@ -24,8 +24,11 @@ Portfolio.create(name: "port2", user_id: 1)
 
 Portfoliostock.create(portfolio_id: 1, stock_id: 1)
 Portfoliostock.create(portfolio_id: 1, stock_id: 2)
-Portfoliostock.create(portfolio_id: 1, stock_id: 3)
+Portfoliostock.create(portfolio_id: 1, stock_id: 5)
 Portfoliostock.create(portfolio_id: 2, stock_id: 1)
+Portfoliostock.create(portfolio_id: 2, stock_id: 3)
+Portfoliostock.create(portfolio_id: 2, stock_id: 4)
+Portfoliostock.create(portfolio_id: 2, stock_id: 2)
 
 Stock.create(ticker: "BAC")
 Stock.create(ticker: "C")
