@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "portfoliostocks", force: :cascade do |t|
     t.integer "portfolio_id"
     t.integer "stock_id"
+    t.float "allocation"
   end
 
   create_table "stocks", force: :cascade do |t|
