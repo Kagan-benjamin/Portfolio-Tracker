@@ -18,19 +18,38 @@ Stock.reset_pk_sequence
             # Seeds 
 
 User.create(username: "Ben", password: "123", email: "example@gmail.com")
+User.create(username: "Layla", password: "abc", email: "example1@gmail.com")
 
-Portfolio.create(name: "testPort", user_id: 1)
-Portfolio.create(name: "port2", user_id: 1) 
+Portfolio.create(name: "Test Portfolio 1", user_id: 1)
+Portfolio.create(name: "Port2", user_id: 1) 
+Portfolio.create(name: "Layla's Portfolio", user_id: 2) 
+
+# Portfolio 1
 
 Portfoliostock.create(portfolio_id: 1, stock_id: 1, allocation: 33.33)
 Portfoliostock.create(portfolio_id: 1, stock_id: 2, allocation: 33.34)
 Portfoliostock.create(portfolio_id: 1, stock_id: 5, allocation: 33.33)
+
+# Portfolio 2
+
 Portfoliostock.create(portfolio_id: 2, stock_id: 21, allocation: 25.00)
 Portfoliostock.create(portfolio_id: 2, stock_id: 32, allocation: 25.00)
 Portfoliostock.create(portfolio_id: 2, stock_id: 11, allocation: 12.50)
 Portfoliostock.create(portfolio_id: 2, stock_id: 47, allocation: 12.50)
 Portfoliostock.create(portfolio_id: 2, stock_id: 17, allocation: 12.50)
 Portfoliostock.create(portfolio_id: 2, stock_id: 9, allocation: 12.50)
+
+# Portfolio 3 
+
+Portfoliostock.create(portfolio_id: 3, stock_id: 1, allocation: 10.00)
+Portfoliostock.create(portfolio_id: 3, stock_id: 2, allocation: 10.00)
+Portfoliostock.create(portfolio_id: 3, stock_id: 3, allocation: 12.50)
+Portfoliostock.create(portfolio_id: 3, stock_id: 4, allocation: 12.50)
+Portfoliostock.create(portfolio_id: 3, stock_id: 6, allocation: 5.00)
+Portfoliostock.create(portfolio_id: 3, stock_id: 24, allocation: 30.00)
+Portfoliostock.create(portfolio_id: 3, stock_id: 27, allocation: 10.00)
+Portfoliostock.create(portfolio_id: 3, stock_id: 44, allocation: 10.00)
+
 
 Stock.create(ticker: "MSFT")
 Stock.create(ticker: "AAPL")
