@@ -13,8 +13,7 @@ class PortfoliosController < ApplicationController
         portfolio = Portfolio.find(params[:id])
         render json: portfolio
     end 
-  
-    
+
     private 
   
     def portfolioParams 
