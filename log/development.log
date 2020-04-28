@@ -27285,3 +27285,1173 @@ Processing by PortfoliosController#index as HTML
 Completed 200 OK in 80ms (Views: 0.4ms | ActiveRecord: 12.9ms | Allocations: 16208)
 
 
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (64.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Portfolio_Tracker_Backend_development"[0m
+  [1m[35m (63.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Portfolio_Tracker_Backend_test"[0m
+  [1m[35m (329.7ms)[0m  [1m[35mCREATE DATABASE "Portfolio_Tracker_Backend_development" ENCODING = 'unicode'[0m
+  [1m[35m (326.1ms)[0m  [1m[35mCREATE DATABASE "Portfolio_Tracker_Backend_test" ENCODING = 'unicode'[0m
+  [1m[35m (14.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1030597571457572370)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUser (1)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password" character varying, "email" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "1"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePortfolio (2)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "portfolios" ("id" bigserial primary key, "name" character varying, "user_id" integer)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "2"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePortfolioStock (3)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "portfoliostocks" ("id" bigserial primary key, "portfolio_id" integer, "stock_id" integer, "allocation" float)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "3"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStock (4)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "stocks" ("id" bigserial primary key, "ticker" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "4"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-28 17:57:49.157414"], ["updated_at", "2020-04-28 17:57:49.157414"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1030597571457572370)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mPortfolio Destroy (0.8ms)[0m  [1m[31mDELETE FROM "portfolios"[0m
+  [1m[36mPortfoliostock Destroy (0.8ms)[0m  [1m[31mDELETE FROM "portfoliostocks"[0m
+  [1m[36mStock Destroy (0.7ms)[0m  [1m[31mDELETE FROM "stocks"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Ben"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "Ben"], ["password", "123"], ["email", "example@gmail.com"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Layla"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["username", "Layla"], ["password", "abc"], ["email", "example1@gmail.com"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfolio Create (0.5ms)[0m  [1m[32mINSERT INTO "portfolios" ("name", "user_id") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Tech Portfolio 1"], ["user_id", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfolio Create (0.2ms)[0m  [1m[32mINSERT INTO "portfolios" ("name", "user_id") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Financials Portfolio"], ["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfolio Create (0.2ms)[0m  [1m[32mINSERT INTO "portfolios" ("name", "user_id") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Energy"], ["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfolio Create (0.2ms)[0m  [1m[32mINSERT INTO "portfolios" ("name", "user_id") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Layla's First Portfolio"], ["user_id", 2]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfolio Create (0.2ms)[0m  [1m[32mINSERT INTO "portfolios" ("name", "user_id") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Portfolio 2"], ["user_id", 2]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.5ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 1], ["allocation", 12.5]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 2], ["allocation", 50.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 3], ["allocation", 12.5]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 4], ["allocation", 10.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 6], ["allocation", 10.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 1], ["stock_id", 10], ["allocation", 5.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 7], ["allocation", 10.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.5ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 8], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 21], ["allocation", 8.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 43], ["allocation", 2.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 49], ["allocation", 5.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 63], ["allocation", 12.5]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 79], ["allocation", 12.5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 2], ["stock_id", 91], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 3], ["stock_id", 22], ["allocation", 50.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 3], ["stock_id", 28], ["allocation", 10.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 3], ["stock_id", 77], ["allocation", 10.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 3], ["stock_id", 137], ["allocation", 15.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 3], ["stock_id", 140], ["allocation", 15.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 4], ["stock_id", 4], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 4], ["stock_id", 13], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 4], ["stock_id", 29], ["allocation", 12.5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 4], ["stock_id", 33], ["allocation", 12.5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 4], ["stock_id", 41], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 1], ["allocation", 20.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 10], ["allocation", 20.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 25], ["allocation", 25.0]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 36], ["allocation", 25.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 40], ["allocation", 5.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPortfolio Load (0.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPortfoliostock Create (0.2ms)[0m  [1m[32mINSERT INTO "portfoliostocks" ("portfolio_id", "stock_id", "allocation") VALUES ($1, $2, $3) RETURNING "id"[0m  [["portfolio_id", 5], ["stock_id", 58], ["allocation", 5.0]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MSFT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AAPL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AMZN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FB"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "JNJ"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GOOG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "V"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "JPM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.6ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "INTC"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VZ"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "UNH"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MA"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "T"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MRK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PFE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DIS"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PEP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "KO"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BAC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "XOM"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WMT"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CSCO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CMCSA"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NFLX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NVDA"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CVX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ADBE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ABT"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "COST"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BMY"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MCD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CRM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MDT"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AMGN"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LLY"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TMO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PYPL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NEE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ABBV"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WFC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ORCL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NKE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ACN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "IBM"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "UNP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "C"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HON"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LIN"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AVGO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TXN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "RTX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DHR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GILD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LMT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SBUX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MMM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "QCOM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BA"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CVS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FIS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MDLZ"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CHTR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LOW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SPGI"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "UPS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CAT"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CCI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CME"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PLD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "D"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.4ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BDX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DUK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "INTU"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AXP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VRTX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GE"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ADP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ANTM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ZTS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AGN"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BKNG"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TJX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SYK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.3ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EQIX"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ISRG"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BIIB"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FISV"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AMD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BLK"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CB"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "USB"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TGT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NOC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NOW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BSX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MU"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CSX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MMC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ICE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TFC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "APD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PGR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NEM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ITW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ATVI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PNC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AMAT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HUM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GPN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "KMB"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ECL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AON"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EW"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BAX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AEP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ILMN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LHX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SCHW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "NSC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "REGN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SHW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MCO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DLR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CNC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "COP"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EXC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "LRCX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SRE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EL"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ADI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ADSK"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GIS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "XEL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SBAC"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ETN"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WBA"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ROP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ALL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TMUS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ROST"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EMR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PSA"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EA"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WEC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "GM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CTSH"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "KMI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ED"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ES"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FDX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HCA"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TRV"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "COF"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AFL"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "STZ"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MET"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PSX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DOW"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PEG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MSCI"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "INFO"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MSI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EOG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ORLY"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EBAY"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SYY"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WLTW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "KR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TROW"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "YUM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.9ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "APH"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "A"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EQR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VRSK"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TEL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "KLAC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AWK"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HPQ"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "JCI"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PRU"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AVB"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "IQV"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CLX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PCAR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CMI"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MNST"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AIG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PPG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WELL"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "BLL"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.6ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SLB"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "RMD"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ZBH"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AZO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "STT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "IDXX"]]
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MAR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "EIX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MCK"]]
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CERN"]]
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "TWTR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HSY"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DTE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ALXN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PAYX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ADM"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SPG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "F"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "XLNX"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CTVA"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VLO"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.5ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PPL"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ETR"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ANSS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SNPS"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VRSN"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CDNS"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "WMB"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "OTIS"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "CMG"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "O"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "VFC"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ROK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "ARE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "HLT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FLT"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "AEE"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "FAST"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.2ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MKC"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "MCHP"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "PH"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "DLTR"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStock Create (0.1ms)[0m  [1m[32mINSERT INTO "stocks" ("ticker") VALUES ($1) RETURNING "id"[0m  [["ticker", "SWK"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users/" for ::1 at 2020-04-28 13:58:24 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (1.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.4ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+Completed 200 OK in 48ms (Views: 0.5ms | ActiveRecord: 11.7ms | Allocations: 12330)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 13:59:03 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 13:59:03 -0400
+Processing by PortfoliosController#index as */*
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.9ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.7ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+Processing by StocksController#index as */*
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.6ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mStock Load (2.0ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 76ms (Views: 0.2ms | ActiveRecord: 5.5ms | Allocations: 15307)
+
+
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (6.83ms)
+Completed 200 OK in 51ms (Views: 34.7ms | ActiveRecord: 14.8ms | Allocations: 22740)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 13:59:13 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 13:59:13 -0400
+Processing by PortfoliosController#index as */*
+Processing by StocksController#index as */*
+  [1m[36mPortfolio Load (1.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  [1m[36mStock Load (1.7ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (8.39ms)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 1.7ms | Allocations: 16466)
+
+
+  [1m[36mPortfoliostock Load (1.5ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 52ms (Views: 0.2ms | ActiveRecord: 11.5ms | Allocations: 23026)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 14:22:08 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 14:22:08 -0400
+Processing by PortfoliosController#index as */*
+  [1m[36mPortfolio Load (1.1ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.9ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.1ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 3.0ms | Allocations: 7105)
+
+
+Processing by StocksController#index as */*
+  [1m[36mStock Load (1.0ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (3.71ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 1.0ms | Allocations: 15739)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 14:24:48 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 14:24:48 -0400
+Processing by PortfoliosController#index as */*
+Processing by StocksController#index as */*
+  [1m[36mPortfolio Load (1.2ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  [1m[36mStock Load (1.0ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (3.78ms)
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 1.0ms | Allocations: 16465)
+
+
+  [1m[36mPortfoliostock Load (1.7ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 5.2ms | Allocations: 23007)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 14:32:24 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 14:32:24 -0400
+Processing by PortfoliosController#index as */*
+  [1m[36mPortfolio Load (1.0ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (1.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 29ms (Views: 0.2ms | ActiveRecord: 3.3ms | Allocations: 7117)
+
+
+Processing by StocksController#index as */*
+  [1m[36mStock Load (1.0ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (3.34ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 1.0ms | Allocations: 15739)
+
+
+Started GET "/users/" for ::1 at 2020-04-28 14:35:38 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (1.0ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+Completed 200 OK in 24ms (Views: 0.2ms | ActiveRecord: 2.7ms | Allocations: 2769)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 14:35:45 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 14:35:45 -0400
+Processing by PortfoliosController#index as */*
+Processing by StocksController#index as */*
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mStock Load (1.7ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+  [1m[36mPortfoliostock Load (1.0ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (4.49ms)
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 1.7ms | Allocations: 17508)
+
+
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.4ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.4ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 44ms (Views: 0.1ms | ActiveRecord: 2.7ms | Allocations: 22965)
+
+
+Started GET "/users/" for ::1 at 2020-04-28 14:36:13 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 2725)
+
+
+Started GET "/portfolios/" for ::1 at 2020-04-28 14:36:24 -0400
+Started GET "/stocks/" for ::1 at 2020-04-28 14:36:24 -0400
+Processing by PortfoliosController#index as */*
+Processing by StocksController#index as */*
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios"[0m
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mStock Load (0.5ms)[0m  [1m[34mSELECT "stocks".* FROM "stocks"[0m
+  ↳ app/controllers/stocks_controller.rb:5:in `index'
+  [1m[36mPortfoliostock Load (0.9ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 1]]
+No serializer found for resource: #<Stock id: 1, ticker: "MSFT">
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Stock::ActiveRecord_Relation (4.08ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.5ms | Allocations: 17455)
+
+
+  [1m[36mPortfoliostock Load (0.4ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 2]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.3ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 3]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.2ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 4]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+  [1m[36mPortfoliostock Load (0.1ms)[0m  [1m[34mSELECT "portfoliostocks".* FROM "portfoliostocks" WHERE "portfoliostocks"."portfolio_id" = $1[0m  [["portfolio_id", 5]]
+  ↳ app/controllers/portfolios_controller.rb:4:in `index'
+Completed 200 OK in 46ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 22941)
+
+
+Started GET "/users/" for ::1 at 2020-04-28 14:36:38 -0400
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.4ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+  [1m[36mPortfolio Load (0.3ms)[0m  [1m[34mSELECT "portfolios".* FROM "portfolios" WHERE "portfolios"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/users_controller.rb:6:in `index'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2726)
+
+
